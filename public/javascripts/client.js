@@ -6,8 +6,7 @@
  * Time: 14:06
  */
 
-var nick = prompt("Enter Ur NickName!");
-nick = nick ? nick : "*游客" + new Date().getTime().toString().substr(9,14);
+
 var input = document.getElementById("input");
 input.focus();
 
@@ -18,9 +17,8 @@ String.prototype.pub = function () {
     document.body.insertBefore(div, input);
 }
 
-var socket = io.connect(location.hostname);
+var socket = io.connect();
 
-socket.emit('setnickname', nick);
 socket.on('public', function (msg) {
     msg.toString().pub();
 });
